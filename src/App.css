@@ -2,19 +2,17 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+svg#progress {
+  width: 300px;
+  height: 300px;
+  /* fill dictated by the color set on the body */
+  fill: currentColor;
+  /* transition for the change in color */
+  transition: color 0.2s ease-in-out;
+  margin: 2rem 0;
 }
-
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -24,15 +22,56 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.controls__color,
+.controls__shape {
+  margin: 2.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* position relative to absolute position the svg icons */
+  position: relative;
+}
+/* absolute position the first icon of each container to its side */
+.controls__color > svg,
+.controls__shape > svg {
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  transform: translate(0%, -50%);
+  opacity: 0.5;
+  width: 70px;
+  height: 70px;
+}
+/* second icon to the right of the container */
+.controls__shape > svg {
+  right: 0;
+  transform: translate(100%, -50%);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
+/* style the buttons to remove the default background and border */
+.controls__color button,
+.controls__shape button {
+  color: currentColor;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  margin: 0.75rem;
+}
+/* expand the nested svg to occupy as much space as allocated by the button elements */
+.controls__color button svg,
+.controls__shape button svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* transition for the change in color */
+  transition: color 0.2s ease-in-out;
+}
+
+/* animation for the colored path */
+@keyframes drawPath {
   to {
-    transform: rotate(360deg);
+    stroke-dashoffset: 0;
   }
 }
